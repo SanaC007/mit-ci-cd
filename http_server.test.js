@@ -72,6 +72,9 @@ it('verify data', async done => {
 // var server = app.listen(3000, function () {
 //   console.log('Running on port 3000');
 // });
+it('fail tests', () => {
+  expect(false).toBeTruthy();
+});
 
 afterAll(done => {
   server.close();
