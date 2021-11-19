@@ -6,31 +6,38 @@
 <link rel="stylesheet" href="styles.css">
 
 <!-- user interface -->
+
 <body>
-    <div style="padding:50px">    
-        <button type="button" class="btn btn-primary" style="font-size: 3em;" onclick="data()" id="showAllData">Show All Data</button><br>
-        <div id="status"></div>        
+    <div style="padding:50px">
+        <button type="button" class="btn btn-primary" style="font-size: 3em;" onclick="data()" id="showAllData">Show All
+            Data</button><br>
+        <div id="status"></div>
     </div>
 </body>
 
 <script>
-// query server and list users
-function data() {
-    const status  = document.getElementById('status');
-    const url = '/data';
-    let html = '';
+    // query server and list users
+    function data()
+    {
+        const status = document.getElementById('status');
+        const url = '/data';
+        let html = '';
 
-    superagent
-        .get(url)
-        .end(function(err,res){
-            if(err){
-                console.log(err);
-            }
-            else{
-                console.log(res);
-                html = '<div class="grid-container">';
-                res.body.forEach(user => {                    
-                    html += `
+        superagent
+            .get(url)
+            .end(function (err, res)
+            {
+                if (err)
+                {
+                    console.log(err);
+                }
+                else
+                {
+                    console.log(res);
+                    html = '<div class="grid-container">';
+                    res.body.forEach(user =>
+                    {
+                        html += `
                         <div class="card" style="min-width: 18rem;">
                         <img class="card-img-top" src="${user.avatar}" alt="Card image cap">
                         <div class="card-body">
@@ -48,12 +55,13 @@ function data() {
                         </div>
                         </div>
                     `;
-                })
-                html += '</div">';
-                status.innerHTML = html;
-            }
-        });
-}
+                    })
+                    html += '</div">';
+                    status.innerHTML = html;
+                }
+            });
+    }
 
 </script>
+
 </html>
